@@ -6,8 +6,8 @@ st.title("🤖 KutiAİ VIP Asistan")
 
 if "GOOGLE_API_KEY" in st.secrets:
     genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-    # BURAYI GÜNCELLEDİK:
-    model = genai.GenerativeModel("gemini-1.5-flash-latest")
+    # MODEL İSMİNİ EN SAĞLAM HALİYLE DEĞİŞTİRDİK:
+    model = genai.GenerativeModel("gemini-pro")
 else:
     st.error("🔑 API Key Sırlar (Secrets) kısmında bulunamadı!")
     st.stop()
@@ -27,4 +27,4 @@ if p := st.chat_input("Mesajını yaz..."):
             st.markdown(r.text)
             st.session_state.messages.append({"role": "assistant", "content": r.text})
         except Exception as e:
-            st.error(f"⚠️ Gerçek Hata: {str(e)}")
+            st.error(f"⚠️ Hata: {str(e)}")
