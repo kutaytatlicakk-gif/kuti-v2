@@ -4,10 +4,10 @@ import google.generativeai as genai
 st.set_page_config(page_title="KutiAİ VIP", page_icon="🤖")
 st.title("🤖 KutiAİ VIP Asistan")
 
-# Şifreyi kontrol et
 if "GOOGLE_API_KEY" in st.secrets:
     genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    # BURAYI GÜNCELLEDİK:
+    model = genai.GenerativeModel("gemini-1.5-flash-latest")
 else:
     st.error("🔑 API Key Sırlar (Secrets) kısmında bulunamadı!")
     st.stop()
@@ -27,5 +27,4 @@ if p := st.chat_input("Mesajını yaz..."):
             st.markdown(r.text)
             st.session_state.messages.append({"role": "assistant", "content": r.text})
         except Exception as e:
-            # HATA BURADA: Artık sadece 'Bağlantı hatası' demeyecek, gerçek sebebi yazacak!
             st.error(f"⚠️ Gerçek Hata: {str(e)}")
